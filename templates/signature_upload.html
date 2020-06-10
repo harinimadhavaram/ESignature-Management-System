@@ -1,0 +1,33 @@
+{% extends "bootstrap/base.html" %}
+
+{% block title %}
+Upload Signature
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" href="{{url_for('.static', filename='signin.css')}}">
+{% endblock %}
+
+
+
+{% block content %}
+<div class="container">
+    <div class="col-xs-4">
+<centre>
+
+
+  <form class="form-signin">
+    <label for="inputImage">UPLOAD SIGNATURE</label>
+    <br><br>
+    <input type="file" id="img" name="img" accept="image/*">
+    <br><br>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Signature Upload</button>
+    <br>
+    <br>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Draw Signature </button>
+  </form>
+</centre>  
+  </div>
+</div> <!-- /container -->
+{% endblock %}
