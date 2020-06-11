@@ -14,9 +14,6 @@ Upload Signature
 {% block content %}
 <div class="container">
     <div class="col-xs-4">
-<centre>
-
-
   <form class="form-signin">
     <label for="inputImage">UPLOAD SIGNATURE</label>
     <br><br>
@@ -25,9 +22,10 @@ Upload Signature
     <button class="btn btn-lg btn-primary btn-block" type="submit">Signature Upload</button>
     <br>
     <br>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Draw Signature </button>
+    <!--<button class="btn btn-lg btn-primary btn-block" onclick="{{ url_for('draw_signature') }}" type="submit">Draw Signature </button> -->
+    <a href="{{ url_for('draw_signature') }}" class="btn btn-lg btn-primary btn-block">Draw Signature</a>
   </form>
-</centre>  
+ 
   </div>
 </div> <!-- /container -->
 {% endblock %}

@@ -20,5 +20,9 @@ def signup():
 def dashboard():
     return render_template('signature_upload.html')
 
+@app.route('/draw_signature')
+def draw_signature():
+    return render_template('draw_signature.html')    
+
 if __name__ == '__main__':
     app.run(debug=True)

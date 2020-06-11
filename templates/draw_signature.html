@@ -1,0 +1,17 @@
+{% extends "bootstrap/base.html" %}
+
+{% block title %}
+Draw Signature
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" href="{{url_for('.static', filename='signin.css')}}">
+{% endblock %}
+
+{% block content %}
+
+    <div>
+    <h2>Write your code here for Draw signature</h2>
+</div>
+{% endblock %}
