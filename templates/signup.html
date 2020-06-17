@@ -6,70 +6,89 @@ Sign Up
 
 {% block styles %}
 {{super()}}
-<link rel="stylesheet" href="{{url_for('.static', filename='signin.css')}}">
+<!--<link rel="stylesheet" href="{{url_for('static', filename='css/signin.css')}}">
+<script  src="{{ url_for('static', filename='js/jquery-3.5.1.min.js')}}"></script>
+<script  src="{{ url_for('static', filename='js/jquery-3.5.1.min.map')}}"></script>-->
+<script  src="{{ url_for('static', filename='js/jquery-3.5.1.js')}}"></script>
+<script  src="{{ url_for('static', filename='js/signup.js')}}"></script>
 {% endblock %}
 
 {% block content %}
 <div class="container">
     <div class="col-xs-4">
+	{% with messages= get_flashed_messages() %}
+		{% if messages %}
+			{% for message in messages %}
+				{{ message }}
+			{% endfor %}
+		{% endif %}
+	{% endwith %}
 
   <form class="form-signin">
+<!--	<form class="form-signin">-->
     <h2 class="form-signin-heading">Sign Up</h2>
     <label for="inputUsername" class="sr-only">Username</label>
-    <input type="text" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
+    <input type="text" name="inputUsername" class="form-control" placeholder="Username" required autofocus>
     <br>
 
-    <label for="inputPreferredname" class="sr-only">Username</label>
-    <input type="text" id="inputPreferredname" class="form-control" placeholder="Preferredname" required autofocus>
+    <label for="inputPreferredname" class="sr-only">Preferredname</label>
+    <input type="text" name="inputPreferredname" class="form-control" placeholder="Preferredname" required autofocus>
     <br>
 
     <label for="inputEmail" class="sr-only">Email address</label>
-    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+    <input type="email" name="inputEmail" class="form-control" placeholder="Email address" required autofocus>
     <br>
     <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+    <input type="password" name="inputPassword" class="form-control" placeholder="Password" required>
     <br>
 
-    
-        <label for="securityQuestion1">Security Question1 </label>
+       <label for="securityQuestion1">Security Question1 </label>
         <br>
-        <select name="secQuest1" id="dropdown">
-            <option value="0">Where was your mother born?</option>
-            <option value="1">What was your first car?</option>
-            <option value="2">What was the first name of your first pet?</option>
-            <option value="3">What was your school's name?</option>
-            <option value="4">Where were you born?</option>
-            
+        <select name="dropdown1" id="dropdown1">
+	{% for secque1 in dropdown1 %}
+		<option value="{{secque1 }}">{{secque1}}</option>
+	{% endfor %}
+           <!-- <option value="Where was your mother born?">Where was your mother born?</option>
+            <option value="What was your first car?">What was your first car?</option>
+            <option value="What was the first name of your first pet?">What was the first name of your first pet?</option>
+            <option value="What was your school's name?">What was your school's name?</option>
+            <option value="Where were you born?">Where were you born?</option>
+            -->
         </select>
+	<!--<input type="text" name="dropdown1" class="form-control" placeholder="secQuest1" required autofocus>-->
         <br>
-        <br>  
-    
-        <label for="secQuestAnswer2" class="sr-only">Answer here</label>
-        <input type="text" class="form-control" id="security_question2" placeholder="Answer here">
         <br>
-        <label for="securityQuestion1">Security Question2 </label>
+
+        <label for="secQuestAnswer1" class="sr-only">Answer here</label>
+        <input type="text" class="form-control" name="security_ans1" placeholder="Answer here">
         <br>
-        <select name="secQuest2" id="dropdown">
-            <option value="0">Where was your mother born?</option>
-            <option value="1">What was your first car?</option>
-            <option value="2">What was the first name of your first pet?</option>
-            <option value="3">What was your school's name?</option>
-            <option value="4">Where were you born?</option>
-            
-            
+        <label for="securityQuestion2">Security Question2 </label>
+        <br>
+	<select name="dropdown2" id="dropdown2">
+        {% for secque2 in dropdown2 %}
+                <option value="{{secque2 }}">{{secque2}}</option>
+        {% endfor %}
+       <!-- <select name="dropdown2" id="dropdown2">
+            <option value="Where was your mother born"></option>
+            <option value="What was your first car?">What was your first car?</option>
+            <option value="What was the first name of your first pet?">What was the first name of your first pet?</option>
+            <option value="What was your school's name?">What was your school's name?</option>
+            <option value="Where were you born?">Where were you born?</option>
+
+            -->
         </select>
+	<!--<input type="text" name="dropdown2" class="form-control" placeholder="secQuest2" required autofocus>-->
         <br>
-        <br>  
-    
+        <br>
+
         <label for="secQuestAnswer2" class="sr-only">Answer here</label>
-        <input type="text" class="form-control" id="security_question2" placeholder="Answer here">
+        <input type="text" class="form-control" name="security_ans2" placeholder="Answer here">
         <br>
-    
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
+
+    <button id="btnSignUp" class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
 </div>
   </form>
   </div>
 
 </div> <!-- /container -->
 {% endblock %}
-
