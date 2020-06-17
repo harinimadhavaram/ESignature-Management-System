@@ -17,15 +17,15 @@ Sign Up
 <div class="container">
     <div class="col-xs-4">
 	{% with messages= get_flashed_messages() %}
-		{% if messages %}
-			{% for message in messages %}
-				{{ message }}
-			{% endfor %}
-		{% endif %}
-	{% endwith %}
-
-  <form class="form-signin">
+                {% if messages %}
+                        {% for message in messages %}
+                                {{ message }}
+                        {% endfor %}
+                {% endif %}
+        {% endwith %}
+  <form class="form-signin" action="/signup" method="post">
 <!--	<form class="form-signin">-->
+
     <h2 class="form-signin-heading">Sign Up</h2>
     <label for="inputUsername" class="sr-only">Username</label>
     <input type="text" name="inputUsername" class="form-control" placeholder="Username" required autofocus>

@@ -1,16 +1,26 @@
 from flask import Flask, render_template, json, request, redirect, url_for, flash,session
 from flask_bootstrap import Bootstrap
 from flask_mysqldb import MySQL
+import sys
+import os
+#from Crypto.Cipher import AES
+#import base64
+from passlib.hash import sha256_crypt
+#cipher = AES.new("hello",AES.MODE_ECB)
+#BLOCK_SIZE = 32
+#from Werkzeug import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = '12345678'
 app.config['MYSQL_DB'] = 'calpers_users'
+app.secret_key='hello'
 
 mysql = MySQL(app)
 
 Bootstrap(app)
+
 
 
 
@@ -27,33 +37,56 @@ def showlogin():
 
 @app.route('/login',methods=['GET','POST'])
 def login():
-    print('0000000111111222222')
-    try:
-        msg =''
 
-        cursor2= mysql.connection.cursor()
-        print('0000000111111')
+    cursor2= mysql.connection.cursor()
+    try:
+
+
+
+        print('0000000111111111')
         username = request.form['inputUsername1']
-        password = request.form['inputPassword1']
-        if username and password:
+        passwordlogin = request.form['inputPassword1']
+        #password1 = sha256_crypt.hash(password)
+
+        #pwd=sha256_crypt.verify(password,password1)
+        #hash=sha256_crypt.hash("keerthi")
+        ##pwd2=sha256_crypt.verify("keerthi",hash)
+        #print(pwd2)
+        print(passwordlogin)
+        if username and passwordlogin:
         #if  'inputUsername1' in request.form and 'inputPassword1' in request.form:
             print('0000000')
             print('111111')
             #username = request.form['inputUsername1']
             #password = request.form['inputPassword1']
 
-            cursor2.execute("select * from user_details where user_details.Username=%s and user_details.Pwd=%s",[username,password])
+            #cursor2.execute("select * from user_details where user_details.Username=%s and user_details.Pwd=%s",[username,pwd])
+            cursor2.execute("select Pwd from user_details where user_details.Username=%s",[username])
+
+            #cursor2.execute("select * from user_details where user_details.Username=%s and user_details.Pwd=%s",[username,password])
             print('22222')
-            userexists = cursor2.fetchone()
-            if userexists:
+            userexists = cursor2.fetchall()
+            print(userexists)
+            pwd=sha256_crypt.verify(passwordlogin,userexists)
+            #pwd=check_password_hash(password,userexists)
+            print('222223')
+            print(userexists)
+            #pwd=sha256_crypt.verify(request.form['inputPassword1'],userexists)
+            print(pwd)
+            #password1 = cipher.decrypt(baes64.b64decode(password))
+            if pwd:
             #session['loggedin']= True
             #session['username']=user_details['username']
-                msg='Incorrect username/password!'
-                return render_template('login.html',msg=msg)
+                print('Logged in successfully')
+                return redirect(url_for('dashboard'))
+
+
 
             #return 'Logged in successfully'
             else:
-                print('Logged in successfully')
+                print('Login failed')
+                msg='Incorrect username/password!'
+
                 return render_template('login.html',msg=msg)
         else:
             return json.dumps({'html':'<span>Enter the required fields</span>'})
@@ -88,6 +121,10 @@ def signup():
         _ans1 = request.form['security_ans1']
         _que2 = request.form['dropdown2']
         _ans2 = request.form['security_ans2']
+        #password1 = base64.b64encode(cipher.encrypt(_pwd))
+        password1 = sha256_crypt.hash(_pwd)
+        #password1=generate_password_hash(_pwd)
+
         print('This is standard output0')
         cursor1.execute("select 1 from user_details where user_details.Username=%s",[_username])
 	#cursor1.execute("select * from user_details where user_details.Username='%s'",_name)
@@ -102,7 +139,9 @@ def signup():
             if len(data) is 0:
 
                 print('This is standard output2222233333')
-                cursor1.execute("insert into user_details(Username,Pwd,Email_id,Preferred_name,SecQue1,Ans1,SecQue2,Ans2) values (%s,%s,%s,%s,%s,%s,%s,%s)",[_username,_pwd,_email,_prename,_que1,_ans1,_que2,_ans2])
+                cursor1.execute("insert into user_details(Username,Pwd,Email_id,Preferred_name,SecQue1,Ans1,SecQue2,Ans2) values (%s,%s,%s,%s,%s,%s,%s,%s)",[_username,password1,_email,_prename,_que1,_ans1,_que2,_ans2])
+
+                #cursor1.execute("insert into user_details(Username,Pwd,Email_id,Preferred_name,SecQue1,Ans1,SecQue2,Ans2) values (%s,%s,%s,%s,%s,%s,%s,%s)",[_username,_pwd,_email,_prename,_que1,_ans1,_que2,_ans2])
                 mysql.connection.commit()
                 flash("Account created")
                 print('This is standard output222223333344444')
