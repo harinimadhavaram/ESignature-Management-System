@@ -4,16 +4,16 @@
 ESignature Management
 {% endblock %}
 
-<!--{% block styles %}
+{% block styles %}
 {{super()}}
-<link rel="stylesheet" href="{{url_for('.static', filename='startertemplate.css')}}"> 
-{% endblock %} -->
+<link rel="stylesheet" href="{{url_for('.static', filename='signin.css')}}"> 
+{% endblock %} 
 
-{% block content %}
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+{% block content %} 
+    <nav class="navbar navbar-inverse navbar-fixed-top ">
       <div class="container">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar" ></button>>
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar" ></button>
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -22,18 +22,33 @@ ESignature Management
           <a class="navbar-brand" href="#">CalPers Project</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="{{ url_for('login') }}">Login</a></li>
-            <li><a href="{{ url_for('signup') }}">Sign Up</a></li>
+          <ul class="nav navbar-nav navbar-right">
+           
+            <li class="active"><a href="{{ url_for('index') }}">Home</a></li>
+            
+            <li><a href="{{ url_for('signup') }}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+            <!--<li><a href="{{ url_for('login') }}">Login</a></li>-->
+            <li class="dropdown">
+                       
+              <a class="dropdown-toggle" data-toggle="dropdown" > Login
+              <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                  <li><a href="{{url_for('login')}}">Login</a></li>
+                <li ><a href="#">Name of the user</a></li> 
+               <li ><a href="#">Logout</a></li>                
+              </ul>
+            </li>
+  
+
           </ul>
         </div>
       </div>
     </nav>
+    
 
     <div class="container">
  
-      <div class="startertemplate">   
+      <div class="startertemplate">  
       
             <h1><br><br><br><br>
               
@@ -44,8 +59,8 @@ ESignature Management
     </h1>
       </div>
 
-    </div><!-- /.container -->
+    </div>
     <div>
-<img class="img-responsive" src="Xuk9bd26.jpeg" > 
+<img class="img-responsive" alt="calpers" src="../images/Xuk9bd26.jpeg") > 
     </div>
 {% endblock %}
