@@ -8,7 +8,7 @@ Login Page
 {{super()}}
 
 <script  src="{{ url_for('static', filename='js/jquery-3.5.1.js')}}"></script>
-<script  src="{{ url_for('static', filename='js/login.js')}}"></script>
+<!--<script  src="{{ url_for('static', filename='js/login.js')}}"></script>-->
 {% endblock %}
 
 {% block content %}
@@ -35,9 +35,12 @@ Login Page
             <a class="dropdown-toggle" data-toggle="dropdown" > Login
             <span class="caret"></span></a>
             <ul class="dropdown-menu">
-                <li><a href="{{url_for('login')}}">Login</a></li>
-              <li ><a href="#">Name of the user</a></li>
-             <li ><a href="#">Logout</a></li>
+               <!-- <li><a href="{{url_for('login')}}">Login</a></li>
+              <li ><a href="#">Name of the user</a>
+
+
+		</li>
+             <li ><a href="#">Logout</a></li>-->
             </ul>
           </li>
 
@@ -48,7 +51,13 @@ Login Page
   <br><br><br><br>
 
       <div class="container">
-
+	{% with messages= get_flashed_messages() %}
+                {% if messages %}
+                        {% for message in messages %}
+                                {{ message }}
+                        {% endfor %}
+                {% endif %}
+        {% endwith %}
       <form class="form-signin" action="{{ url_for('showlogin') }}" method="post">
         <div class="col-xs-4">
         <h2 class="form-signin-heading">Sign In</h2>

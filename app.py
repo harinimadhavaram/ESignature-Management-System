@@ -32,7 +32,7 @@ def index():
         return render_template('index.html',message="User created successfully")
     return render_template('index.html')
 
-@app.route('/login')
+@app.route('/login',methods=['GET','POST'])
 def login():
     return render_template('login.html')
 
@@ -54,11 +54,11 @@ def showlogin():
         #hash=sha256_crypt.hash("keerthi")
         ##pwd2=sha256_crypt.verify("keerthi",hash)
         #print(pwd2)
-        print(passwordlogin)
+        #print(passwordlogin)
         if username and passwordlogin:
         #if  'inputUsername1' in request.form and 'inputPassword1' in request.form:
-            print('0000000')
-            print('111111')
+            #print('0000000')
+            #print('111111')
             #username = request.form['inputUsername1']
             #password = request.form['inputPassword1']
 
@@ -66,7 +66,7 @@ def showlogin():
             #cursor2.execute("select Pwd from user_details where user_details.Username=%s",[username])
 
             #cursor2.execute("select * from user_details where user_details.Username=%s and user_details.Pwd=%s",[username,password])
-            print('22222')
+            #print('22222')
             #password1 = cursor2.fetchall()
             cursor2.execute("select * from user_details where user_details.Username=%s and user_details.Pwd=%s",[username,passwordlogin])
 
@@ -75,7 +75,7 @@ def showlogin():
             #print(password1)
             #pwd=sha256_crypt.verify(passwordlogin,password1)
             #pwd=check_password_hash(password,userexists)
-            print('222223')
+            #print('222223')
 
             #pwd=sha256_crypt.verify(request.form['inputPassword1'],userexists)
             #print(pwd)
@@ -85,11 +85,13 @@ def showlogin():
                 #session['loggedin']= True
                 #session['username']=userdetail['Username']
                 print('Logged in successfully')
+                #return render_template('signature_upload.html')
                 return redirect(url_for('dashboard'))
 
             else:
                 print('Login failed')
-                msg='Incorrect username/password!'
+                flash('Login failed')
+                #msg='Incorrect username/password!'
                 return render_template('login.html')
 
 
@@ -123,7 +125,7 @@ def signup():
 def showsignup():
     cursor1 = mysql.connection.cursor()
     try:
-        print('This is standard output00000')
+        #print('This is standard output00000')
         _username = request.form['inputUsername']
         _pwd = request.form['inputPassword']
         _email = request.form['inputEmail']
@@ -137,7 +139,7 @@ def showsignup():
         #password1 = sha256_crypt.hash(_pwd)
         #password1=generate_password_hash(_pwd)
 
-        print('This is standard output0')
+        #print('This is standard output0')
         cursor1.execute("select 1 from user_details where user_details.Username=%s",[_username])
 	#cursor1.execute("select * from user_details where user_details.Username='%s'",_name)
         data=cursor1.fetchall()
@@ -147,22 +149,24 @@ def showsignup():
             #cursor.callproc('sp_createUser',(_name, _pwd, _email,_prename, _que1, _ans1, _que2, _ans2))
             #cursor1.execute("select * from user_details where user_details.Username=%s",_name)
             #data=cursor1.fetchall(
-            print('This is standard output2222')
+            #print('This is standard output2222')
             if len(data) is 0:
 
-                print('This is standard output2222233333')
+                #print('This is standard output2222233333')
                 #cursor1.execute("insert into user_details(Username,Pwd,Email_id,Preferred_name,SecQue1,Ans1,SecQue2,Ans2) values (%s,%s,%s,%s,%s,%s,%s,%s)",[_username,password1,_email,_prename,_que1,_ans1,_que2,_ans2])
 
                 cursor1.execute("insert into user_details(Username,Pwd,Email_id,Preferred_name,SecQue1,Ans1,SecQue2,Ans2) values (%s,%s,%s,%s,%s,%s,%s,%s)",[_username,_pwd,_email,_prename,_que1,_ans1,_que2,_ans2])
                 mysql.connection.commit()
                 flash("Account created")
-                print('This is standard output222223333344444')
-                return redirect(url_for('login'))
+                #print('This is standard output222223333344444')
+                #return render_template('login.html')
+                return redirect(url_for("login"))
 
             else:
                 flash("Username Exists.Refill the form")
                 print("Username Exists")
-                return redirect(url_for('signup'))
+
+                return redirect(url_for("signup"))
                 #conn.commit()
                 #print('This is standard output2', file=sys.stdout)
             #for result in cursor.stored_results():
