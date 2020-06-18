@@ -1,4 +1,4 @@
-from flask import Flask, render_template, json, request, redirect, url_for, flash,session
+from flask import Flask, render_template, json, request, redirect, url_for, flash, session
 from flask_bootstrap import Bootstrap
 from flask_mysqldb import MySQL
 import sys
@@ -30,13 +30,13 @@ def index():
         return render_template('index.html',message="User created successfully")
     return render_template('index.html')
 
-@app.route('/showlogin')
-def showlogin():
+@app.route('/login')
+def login():
     return render_template('login.html')
 
 
-@app.route('/login',methods=['GET','POST'])
-def login():
+@app.route('/showlogin',methods=['GET','POST'])
+def showlogin():
 
     cursor2= mysql.connection.cursor()
     try:
@@ -61,20 +61,20 @@ def login():
             #password = request.form['inputPassword1']
 
             #cursor2.execute("select * from user_details where user_details.Username=%s and user_details.Pwd=%s",[username,pwd])
-            cursor2.execute("select Pwd from user_details where user_details.Username=%s",[username])
+            #cursor2.execute("select Pwd from user_details where user_details.Username=%s",[username])
 
-            #cursor2.execute("select * from user_details where user_details.Username=%s and user_details.Pwd=%s",[username,password])
+            cursor2.execute("select * from user_details where user_details.Username=%s and user_details.Pwd=%s",[username,passwordlogin])
             print('22222')
             userexists = cursor2.fetchall()
             print(userexists)
-            pwd=sha256_crypt.verify(passwordlogin,userexists)
+            #pwd=sha256_crypt.verify(passwordlogin,userexists)
             #pwd=check_password_hash(password,userexists)
             print('222223')
-            print(userexists)
+            #print(userexists)
             #pwd=sha256_crypt.verify(request.form['inputPassword1'],userexists)
-            print(pwd)
+            #print(pwd)
             #password1 = cipher.decrypt(baes64.b64decode(password))
-            if pwd:
+            if len(userexists) is not 0:
             #session['loggedin']= True
             #session['username']=user_details['username']
                 print('Logged in successfully')
@@ -100,15 +100,15 @@ def login():
     finally:
         cursor2.close();
 
-@app.route('/showsignup')
-def showsignup():
+@app.route('/signup')
+def signup():
     dropdown=['Where was your mother born','What was your first car','What was the first name of your first pet?','What was your school\'s name?','Where were you born?']
     return render_template('signup.html',dropdown1=dropdown,dropdown2=dropdown)
 
 
 
-@app.route('/signup', methods=['GET','POST'])
-def signup():
+@app.route('/showsignup', methods=['GET','POST'])
+def showsignup():
     cursor1 = mysql.connection.cursor()
     try:
         print('This is standard output00000')
@@ -122,26 +122,26 @@ def signup():
         _que2 = request.form['dropdown2']
         _ans2 = request.form['security_ans2']
         #password1 = base64.b64encode(cipher.encrypt(_pwd))
-        password1 = sha256_crypt.hash(_pwd)
+        #password1 = sha256_crypt.hash(_pwd)
         #password1=generate_password_hash(_pwd)
 
         print('This is standard output0')
         cursor1.execute("select 1 from user_details where user_details.Username=%s",[_username])
 	#cursor1.execute("select * from user_details where user_details.Username='%s'",_name)
-        data=cursor1.fetchall()
+        #data=cursor1.fetchall()
 
         if _username and _prename and _pwd and _email and _que1 and _ans1 and _que2 and _ans2:
             #print('This is standard output1', file=sys.stdout)
             #cursor.callproc('sp_createUser',(_name, _pwd, _email,_prename, _que1, _ans1, _que2, _ans2))
             #cursor1.execute("select * from user_details where user_details.Username=%s",_name)
-            #data=cursor1.fetchall(
+            data=cursor1.fetchall()
             print('This is standard output2222')
             if len(data) is 0:
 
                 print('This is standard output2222233333')
-                cursor1.execute("insert into user_details(Username,Pwd,Email_id,Preferred_name,SecQue1,Ans1,SecQue2,Ans2) values (%s,%s,%s,%s,%s,%s,%s,%s)",[_username,password1,_email,_prename,_que1,_ans1,_que2,_ans2])
+                #cursor1.execute("insert into user_details(Username,Pwd,Email_id,Preferred_name,SecQue1,Ans1,SecQue2,Ans2) values (%s,%s,%s,%s,%s,%s,%s,%s)",[_username,password1,_email,_prename,_que1,_ans1,_que2,_ans2])
 
-                #cursor1.execute("insert into user_details(Username,Pwd,Email_id,Preferred_name,SecQue1,Ans1,SecQue2,Ans2) values (%s,%s,%s,%s,%s,%s,%s,%s)",[_username,_pwd,_email,_prename,_que1,_ans1,_que2,_ans2])
+                cursor1.execute("insert into user_details(Username,Pwd,Email_id,Preferred_name,SecQue1,Ans1,SecQue2,Ans2) values (%s,%s,%s,%s,%s,%s,%s,%s)",[_username,_pwd,_email,_prename,_que1,_ans1,_que2,_ans2])
                 mysql.connection.commit()
                 flash("Account created")
                 print('This is standard output222223333344444')
@@ -150,7 +150,7 @@ def signup():
             else:
                 flash("Username Exists.Refill the form")
                 print("Username Exists")
-                return redirect(url_for('showsignup'))
+                return redirect(url_for('signup'))
                 #conn.commit()
                 #print('This is standard output2', file=sys.stdout)
             #for result in cursor.stored_results():

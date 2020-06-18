@@ -2,7 +2,7 @@ $(function(){
 	$('#btnSignUp').click(function(){
 		console.log("This is working so far");
 		$.ajax({
-			url: '/signup',
+			url: '/showsignup',
 			data: $('form').serialize(),
 			type: 'POST',
 			success: function(response){
