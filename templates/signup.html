@@ -1,0 +1,75 @@
+{% extends "bootstrap/base.html" %}
+
+{% block title %}
+Sign Up
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" href="{{url_for('.static', filename='signin.css')}}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="col-xs-4">
+
+  <form class="form-signin">
+    <h2 class="form-signin-heading">Sign Up</h2>
+    <label for="inputUsername" class="sr-only">Username</label>
+    <input type="text" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
+    <br>
+
+    <label for="inputPreferredname" class="sr-only">Username</label>
+    <input type="text" id="inputPreferredname" class="form-control" placeholder="Preferredname" required autofocus>
+    <br>
+
+    <label for="inputEmail" class="sr-only">Email address</label>
+    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+    <br>
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+    <br>
+
+    
+        <label for="securityQuestion1">Security Question1 </label>
+        <br>
+        <select name="secQuest1" id="dropdown">
+            <option value="0">Where was your mother born?</option>
+            <option value="1">What was your first car?</option>
+            <option value="2">What was the first name of your first pet?</option>
+            <option value="3">What was your school's name?</option>
+            <option value="4">Where were you born?</option>
+            
+        </select>
+        <br>
+        <br>  
+    
+        <label for="secQuestAnswer2" class="sr-only">Answer here</label>
+        <input type="text" class="form-control" id="security_question2" placeholder="Answer here">
+        <br>
+        <label for="securityQuestion1">Security Question2 </label>
+        <br>
+        <select name="secQuest2" id="dropdown">
+            <option value="0">Where was your mother born?</option>
+            <option value="1">What was your first car?</option>
+            <option value="2">What was the first name of your first pet?</option>
+            <option value="3">What was your school's name?</option>
+            <option value="4">Where were you born?</option>
+            
+            
+        </select>
+        <br>
+        <br>  
+    
+        <label for="secQuestAnswer2" class="sr-only">Answer here</label>
+        <input type="text" class="form-control" id="security_question2" placeholder="Answer here">
+        <br>
+    
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
+</div>
+  </form>
+  </div>
+
+</div> <!-- /container -->
+{% endblock %}
+
