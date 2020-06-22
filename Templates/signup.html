@@ -9,6 +9,20 @@ Sign Up
 
 
 <script  src="{{ url_for('static', filename='js/jquery-3.5.1.js')}}"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#btnSignUp").click(function () {
+            var password = $("#inputPassword").val();
+            var confirmPassword = $("#confirmPassword").val();
+            if (password != confirmPassword) {
+                alert("Passwords do not match.");
+                return false;
+            }
+            return true;
+        });
+    });
+</script>
+
 <!--<script  src="{{ url_for('static', filename='js/signup.js')}}"></script>-->
 {% endblock %}
 
@@ -56,7 +70,7 @@ Sign Up
 	{% with messages= get_flashed_messages() %}
                 {% if messages %}
                         {% for message in messages %}
-                          <h5 style="color:red">      {{ message }}</h5>
+                                {{ message }}
                         {% endfor %}
                 {% endif %}
         {% endwith %}
@@ -65,18 +79,21 @@ Sign Up
 
     <h2 class="form-signin-heading">Sign Up</h2>
     <label for="inputUsername" class="sr-only">Username</label>
-    <input type="text" id="inputUsername" name="inputUsername" class="form-control" placeholder="Username" required autofocus>
+    <input type="text" id="inputUsername" name="inputUsername" class="form-control" placeholder="Username" pattern="[a-zA-Z0-9]{8,15}"  title="Username should only contain letters and numbers. Username should be minimum 8 characters" required autofocus>
     <br>
 
     <label for="inputPreferredname" class="sr-only">Preferredname</label>
-    <input type="text" id="inputPreferredname" name="inputPreferredname" class="form-control" placeholder="Preferredname" required autofocus>
+    <input type="text" id="inputPreferredname" name="inputPreferredname" class="form-control" placeholder="Preferredname" pattern="[a-zA-Z]{4,15}" title="Preferredname should only contain letters. Preferredname should be minimum 4 characters " required autofocus>
     <br>
 
     <label for="inputEmail" class="sr-only">Email address</label>
-    <input type="email" id="inputEmail" name="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+    <input type="email" id="inputEmail" name="inputEmail" class="form-control" placeholder="Email address" pattern="^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,}$" title="Enter valid mailid"required autofocus>
     <br>
     <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="Password" required>
+    <input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="Password" pattern="[A-Za-z0-9@#$%^&+=]{8,}" title="Password should contain letters,numbers, @ # $ % ^ & + = with min length of 8" required>
+    <br>
+    <label for="confirmPassword" class="sr-only">Password</label>
+    <input type="password" id="confirmPassword" name="confirmPassword" class="form-control" placeholder="Password" required>
     <br>
 
        <label for="securityQuestion1">Security Question1 </label>
@@ -97,7 +114,7 @@ Sign Up
         <br>
 
         <label for="secQuestAnswer1" class="sr-only">Answer here</label>
-        <input type="text" class="form-control" name="security_ans1" placeholder="Answer here">
+        <input type="text" class="form-control" name="security_ans1" pattern="[a-zA-Z0-9]+" title="should only contain letters and numbers" placeholder="Answer here">
         <br>
         <label for="securityQuestion2">Security Question2 </label>
         <br>
@@ -119,7 +136,7 @@ Sign Up
         <br>
 
         <label for="secQuestAnswer2" class="sr-only">Answer here</label>
-        <input type="text" class="form-control" name="security_ans2" placeholder="Answer here">
+        <input type="text" class="form-control" name="security_ans2" pattern="[a-zA-Z0-9]+" title="should only contain letters and numbers" placeholder="Answer here">
         <br>
 
     <button id="btnSignUp" class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>

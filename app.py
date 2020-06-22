@@ -7,6 +7,7 @@ from flask_mysqldb import MySQL
 from passlib.hash import sha256_crypt
 from markupsafe import escape
 import smtplib
+import re
 #from itsdangerous import URLSafeTimedSerialize
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -117,6 +118,10 @@ def showsignup():
         cursor1.execute("select 1 from user_details where user_details.Username=%s", [_username])
         data = cursor1.fetchall()
 
+
+
+
+
         if _username and _prename and _pwd and _email and _que1 and _ans1 and _que2 and _ans2:
 
             if len(data) is 0:
@@ -170,12 +175,14 @@ def passwordreset():
         email=session['sessionemail']
         pwd2 = request.form['inputPassword1']
         print(pwd2)
-        #password22 = sha256_crypt.hash(pwd2)
+        password22 = sha256_crypt.hash(pwd2)
+        # print("password ", password22)
         #cursor5.execute("select Username from user_details where user_details.Email_id = %s",email)
         #user=cursor5.fetchall();
         #print(user)
         sql="update calpers_users.user_details set Pwd = (%s) where user_details.Email_id = (%s)"
-        cursor5.execute(sql,(pwd2, email))
+        cursor5.execute(sql,(password22, email))
+        mysql.connection.autocommit(True)
         print("5555555")
         #cursor5.execute("select Username from user_details where Pwd=%s",[pwd2])
         user2=cursor5.fetchall()
@@ -198,7 +205,9 @@ def forgotpwd():
 def forgotpassword():
     cursor4 = mysql.connection.cursor()
     _email = request.form['inputEmail1']
-    user = cursor4.execute("select Username from user_details where user_details.Email_id=%s ", [_email])
+    cursor4.execute("select Username from user_details where user_details.Email_id=%s ", [_email])
+    user=cursor4.fetchall()
+
     if user is not 0:
 
         toaddr = _email
@@ -207,7 +216,8 @@ def forgotpassword():
 
         msg['Subject'] = "Reset password link"
 
-        body = "Hi " + str(user) + " This is link for resetting the pwd" + confirm_url
+
+        body = "Hi "  + user[0][0] + " This is link for resetting the pwd        " + confirm_url
 
         msg.attach(MIMEText(body, 'plain'))
         email = smtplib.SMTP('smtp.gmail.com', 587)
