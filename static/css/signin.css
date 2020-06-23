@@ -420,8 +420,13 @@ border-color: white;
 background:steelblue;
 color:white;
 border-color: white;
-} 
+}
 
 .edit-input {
   display:none;
+}
+.edit-box{
+    margin-left: 60px;
+    color: black;
+    font-family: sans-serif;
 }

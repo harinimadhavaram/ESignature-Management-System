@@ -17,17 +17,21 @@ Profile Page
    //set text in text div to textarea
    //correct line breaks, prevent HTML injection
    var subject = theText.innerHTML;
-   subject = subject.replace(new RegExp("<br />", "gi"), 'n');
-   subject = subject.replace(new RegExp("<br />", "gi"), 'n');
-   subject = subject.replace(new RegExp("<", "gi"), '<');
-   subject = subject.replace(new RegExp(">", "gi"), '>');
+   // subject = subject.replace(new RegExp("<br />", "gi"), 'n');
+   // subject = subject.replace(new RegExp("<br />", "gi"), 'n');
+   // subject = subject.replace(new RegExp("<", "gi"), '<');
+   // subject = subject.replace(new RegExp(">", "gi"), '>');
    theEditor.value = subject;
  
    //hide text, show editor
    theText.style.display = 'none';
    editorArea.style.display = 'inline';
 }
-
+var theText = document.getElementById('thetext');
+   var theEditor = document.getElementById('ta1');
+   var editorArea = document.getElementById('editor');
+    theText.style.display = 'inline';
+   editorArea.style.display = 'none';
 function doEdit() {
    var theText = document.getElementById('thetext');
    var theEditor = document.getElementById('ta1');
@@ -40,14 +44,12 @@ function doEdit() {
    //set text to be value in editor
    //correct line breaks, prevent HTML injection
    var subject = theEditor.value;
-   subject = subject.replace(new RegExp("<", "g"), '<');
-   subject = subject.replace(new RegExp(">", "g"), '>');
-   subject = subject.replace(new RegExp("n", "g"), '<br />');
+   // subject = subject.replace(new RegExp("<", "g"), '<');
+   // subject = subject.replace(new RegExp(">", "g"), '>');
+   // subject = subject.replace(new RegExp("n", "g"), '<br />');
    theText.innerHTML = subject;
  
    //hide editor, show text
-   theText.style.display = 'inline';
-   editorArea.style.display = 'none';
 }
 </script>
 
@@ -59,7 +61,7 @@ function doEdit() {
         <nav class="navbar navbar-default">
             <div class="container-fluid">
               <div class="navbar-header">
-                <a class="navbar-brand" href="#">CalPERS</a>
+                <a class="navbar-brand" href="{{url_for('home')}}">CalPERS</a>
                 
               </div>
               <ul class="nav navbar-nav ">
@@ -89,12 +91,10 @@ function doEdit() {
           <div class="profile-details">
             <label>Email Address:</label>
           <!-- <p class="p-email">User's email  will be displayed here</p>    -->
-          <p id="thetext" onclick="toggleEditor()">{% if session.loggedin %}
-             {{session.email}}
-                    {% endif %}</p>
+          <p id="thetext" class="email-text" onclick="toggleEditor()">{% if session.loggedin %}{{session.email}}{% endif %}</p>
           <input type="text" class="edit-input" />
           <div id="editor">
-            <textarea id="ta1" name="ta1" rows="3" cols="40"></textarea><br />
+            <input id="ta1" class="edit-box" name="ta1"><br />
             <!-- <input name="submit" id="submit" type="button" value="Edit Text" onclick="doEdit()" /> -->
         </div>     
           </div>
