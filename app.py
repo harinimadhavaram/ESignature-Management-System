@@ -26,7 +26,7 @@ app = Flask(__name__)
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = '1234'
+app.config['MYSQL_PASSWORD'] = '12345678'
 app.config['MYSQL_DB'] = 'calpers_users'
 app.secret_key='hello'
 ts = itsdangerous.URLSafeTimedSerializer(app.config["SECRET_KEY"])
@@ -120,6 +120,7 @@ def showlogin():
                     print(session['user'])
 
                 print('Logged in successfully')
+
                 #return render_template('signature_upload.html')
                 return render_template('home_page.html')
 
@@ -257,6 +258,7 @@ def passwordreset():
         cursor5.execute(sql,(password22, email))
         mysql.connection.autocommit(True)
         print("5555555")
+        flash("Password changed")
         #cursor5.execute("select Username from user_details where Pwd=%s",[pwd2])
         user2=cursor5.fetchall()
 
@@ -282,8 +284,11 @@ def forgotpassword():
     _que1 = request.form['dropdown']
     _ans1 = request.form['dropdown1']
     if _email and _que1 and _ans1:
-        cursor4.execute("select Username from user_details where user_details.Email_id=%s and user_details.SecQue1=%s and user_details.Ans1=%s", [_email,_que1,_ans1])
+        exists=cursor4.execute("select Username from user_details where user_details.Email_id=%s and user_details.SecQue1=%s and user_details.Ans1=%s", [_email,_que1,_ans1])
         user=cursor4.fetchall()
+        if exists is 0:
+            flash("Details are incorrect")
+            return redirect(url_for("forgotpwd"))
     
     
     if user is not 0:
@@ -299,6 +304,7 @@ def forgotpassword():
         message = msg.as_string()
         email.sendmail(fromaddr, toaddr, message)
         email.quit()
+        flash("Details verified. An email had been sent to you to reset the password.")
         return render_template('index.html', message="User created successfully")
     else:
         abort(404)

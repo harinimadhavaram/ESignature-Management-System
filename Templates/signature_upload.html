@@ -6,59 +6,15 @@ Upload Signature
 
 {% block styles %}
 {{super()}}
+<link rel="stylesheet" href="{{url_for('.static', filename='signin.css')}}">
 {% endblock %}
 
 
 
 {% block content %}
-
-<nav class="navbar navbar-inverse navbar-fixed-top ">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar" ></button>
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">CalPers Project</a>
-    </div>
-    <div id="navbar" class="collapse navbar-collapse">
-      <ul class="nav navbar-nav navbar-right">
-
-        <li class="active"><a href="{{ url_for('index') }}">Home</a></li>
-
-        <li><a href="{{ url_for('signup') }}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-        <!--<li><a href="{{ url_for('login') }}">Login</a></li>-->
-        <li class="dropdown">
-
-          <a class="dropdown-toggle" data-toggle="dropdown" >{% if session.loggedin %}
-    Greetings {{session.user}}
-            {% endif %}
-          <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-
-            <li >edit user details
-</li>
-           <li ><a href="{{ url_for('logout') }}">Logout</a></li>
-          </ul>
-        </li>
-
-
-      </ul>
-    </div>
-  </div>
-</nav>
-<br><br><br><br>
-
-
-
-
-
 <div class="container">
     <div class="col-xs-4">
   <form class="form-signin">
-
     <label for="inputImage">UPLOAD SIGNATURE</label>
     <br><br>
     <input type="file" id="img" name="img" accept="image/*">
@@ -69,7 +25,7 @@ Upload Signature
     <!--<button class="btn btn-lg btn-primary btn-block" onclick="{{ url_for('draw_signature') }}" type="submit">Draw Signature </button> -->
     <a href="{{ url_for('draw_signature') }}" class="btn btn-lg btn-primary btn-block">Draw Signature</a>
   </form>
-
+ 
   </div>
 </div> <!-- /container -->
 {% endblock %}
