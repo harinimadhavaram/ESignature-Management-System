@@ -1,0 +1,109 @@
+{% extends "bootstrap/base.html" %}
+
+{% block title %}
+Profile Page
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/signin.css') }}">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+<script type="text/javascript">
+  function toggleEditor() {
+   var theText = document.getElementById('thetext');
+   var theEditor = document.getElementById('ta1');
+   var editorArea = document.getElementById('editor');
+ 
+   //set text in text div to textarea
+   //correct line breaks, prevent HTML injection
+   var subject = theText.innerHTML;
+   // subject = subject.replace(new RegExp("<br />", "gi"), 'n');
+   // subject = subject.replace(new RegExp("<br />", "gi"), 'n');
+   // subject = subject.replace(new RegExp("<", "gi"), '<');
+   // subject = subject.replace(new RegExp(">", "gi"), '>');
+   theEditor.value = subject;
+ 
+   //hide text, show editor
+   theText.style.display = 'none';
+   editorArea.style.display = 'inline';
+}
+var theText = document.getElementById('thetext');
+   var theEditor = document.getElementById('ta1');
+   var editorArea = document.getElementById('editor');
+    theText.style.display = 'inline';
+   editorArea.style.display = 'none';
+function doEdit() {
+   var theText = document.getElementById('thetext');
+   var theEditor = document.getElementById('ta1');
+   var editorArea = document.getElementById('editor');
+ 
+   //this is where you would call your AJAX update script
+   //e.g., doXMLRequest(data);
+   //you probably want to make your DB update BEFORE converting for display
+ 
+   //set text to be value in editor
+   //correct line breaks, prevent HTML injection
+   var subject = theEditor.value;
+   // subject = subject.replace(new RegExp("<", "g"), '<');
+   // subject = subject.replace(new RegExp(">", "g"), '>');
+   // subject = subject.replace(new RegExp("n", "g"), '<br />');
+   theText.innerHTML = subject;
+ 
+   //hide editor, show text
+}
+</script>
+
+{% endblock %}
+
+{% block content %}
+<div class="profilepage">
+    <div class="profileform">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+              <div class="navbar-header">
+                <a class="navbar-brand" href="{{url_for('home')}}">CalPERS</a>
+                
+              </div>
+              <ul class="nav navbar-nav ">
+                
+                <li class="dropdown">
+                  <a class="dropdown-toggle " id="mynav" data-toggle="dropdown" >{% if session.loggedin %}
+                    HI {{session.user}}
+                            {% endif %}
+                  <span class="caret"></span></a>
+                  <ul class="dropdown-menu" >
+                    <li ><a class="mynav-contents" href="{{url_for('home')}}">HOME</a></li>
+                    <li ><a class="mynav-contents" href="{{url_for('logout')}}">Logout</a></li>
+                   </ul>
+                </li>
+                
+              </ul>
+            </div>
+          </nav>
+
+          <h2>PROFILE INFO</h2>
+          <div class="profile-details">
+            <label>Username:</label>
+          <p>{% if session.loggedin %}
+          {{session.user}}
+                    {% endif %}</p>            
+          </div>
+          <div class="profile-details">
+            <label>Email Address:</label>
+          <!-- <p class="p-email">User's email  will be displayed here</p>    -->
+          <p id="thetext" class="email-text" onclick="toggleEditor()">{% if session.loggedin %}{{session.email}}{% endif %}</p>
+          <input type="text" class="edit-input" />
+          <div id="editor">
+            <input id="ta1" class="edit-box" name="ta1"><br />
+            <!-- <input name="submit" id="submit" type="button" value="Edit Text" onclick="doEdit()" /> -->
+        </div>     
+          </div>
+          <div class="profile-details">
+            <label>Signature:</label>
+          <p>User's signature will be displayed here</p> 
+       </div>
+       <button name="submit" id="submit" class="login-button" type="submit" onclick="doEdit()">Edit Details</button>
+    </div>
+    
+</div>
+{% endblock %}
