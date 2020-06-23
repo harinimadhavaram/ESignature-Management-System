@@ -1,0 +1,427 @@
+.split {
+    height: 100%;
+    width: 50%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    overflow-x: hidden;
+    padding-top: 20px;
+  }
+  
+  .left {
+    left: 0;
+   top:70px;
+   background: url("https://cdn.dribbble.com/users/79571/screenshots/11475281/media/b74ece3d1cbad46aa8eac6239b14fc2c.png");
+    background-size: contain;  
+    background-repeat: no-repeat;
+   
+}
+ 
+  .right {
+    right: 0;    
+    background-color: steelblue;   
+    }
+  .right h2{
+  
+      left:50%;
+      bottom:50px;
+       text-align: center; 
+      font-family: sans-serif;
+      color: white;
+      
+  }
+  .right input{
+      background:transparent;
+      color:white;
+      border:none;
+      border-bottom: 1px solid #fff;
+      width:100%;
+      font-size: 16px;
+  }
+  .right input:hover{
+      outline: none;
+  }
+  
+  .right .dropdown{
+      background:transparent;
+      font-size:16px;
+      color:white;
+      border-bottom: 1px solid #fff;
+  }
+  
+ .right .sec-options{
+background:steelblue;
+ }
+  .right label{
+    font-family: sans-serif;
+    color:white;
+    padding:7px;
+
+  }
+  .right img{
+    width:70%;
+    height:70%;
+    bottom :25px;
+    left:50px;
+    position: relative;
+  }
+
+  .right .loginform{
+
+    top:15%;
+    left:50%;
+   padding:30px;
+    width:400px;
+    height:210px;   
+    border-radius: 10px;
+    transform: translate(100px, 50px);
+    
+}
+.right #signup-alert{
+  color:red;
+}
+
+.profilepage #editor{
+  display: none;
+  left:500px;
+  top:100px;
+ 
+  color:steelblue;
+  position: relative;
+}
+.right .login-button{
+    top: 50px;
+    display: block;
+    padding: 10px 20px;
+    border-radius: 12px;
+    letter-spacing: 4px;
+    background:white;
+    border-color: steelblue;
+}
+.right .login-button:hover {
+   background:steelblue;
+   color:white;
+   border-color: white;
+  } 
+
+  .loginform .forgot-password{
+      display:inline;
+      color:white;
+      
+  }
+  .loginform .signup-link{
+      display: block;
+      color:white;
+      left:100px;
+  }
+
+  .homepage{  
+    height: 100%;
+    width: 100%;
+     position: fixed;
+    /* z-index: 1;
+    top: 0; */
+    overflow-x: hidden; 
+    padding-top: 20px; 
+    background-color:steelblue;      
+    }
+   .homepage .homeform img{
+      width:210px;
+    height:150px;
+   left: 43%;
+   right:55%;
+    position: relative;
+    }
+   .homepage .homeform h2{
+      left:50%;
+      /* bottom:50px; */
+       text-align: center; 
+      font-family: sans-serif;
+      color: white;
+      
+    }
+   
+
+.homeform .forgot-form label{
+  font-family: sans-serif;
+    color:white;
+    padding:2px;
+}
+.homeform .forgot-form input{
+  background:transparent;
+  color:white;
+  border:none;
+  border-bottom: 1px solid #fff;
+  width:300px;
+  font-size: 16px;
+}
+.homeform .dropdown{
+  background:transparent;
+  font-size:16px;
+  color:white;
+  border-bottom: 1px solid #fff;
+}
+
+.homeform .sec-options{
+background:steelblue;
+}
+.homeform .forgot-form{
+  
+  /* top:10px; */
+  left:400px;
+  /* right:50%; */
+  position: relative;
+  padding:30px;
+   /* width:400px;
+  height:210px;    */
+   border-radius: 10px;
+  transform: translate(100px, 50px);  
+}
+
+
+.homeform .login-button{
+   top: 50px; 
+  position: relative;
+  display: block;
+  padding: 10px 20px;
+  border-radius: 12px;
+  left:600px;
+  letter-spacing: 4px;
+  background:white;
+  border-color: steelblue;
+}
+.homeform .login-button:hover {
+ background:steelblue;
+ color:white;
+ border-color: white;
+} 
+
+.resetpage{  
+  height: 100%;
+  width: 100%;
+   position: fixed;
+  /* z-index: 1;
+  top: 0; */
+  overflow-x: hidden; 
+  padding-top: 20px; 
+  background-color:steelblue;      
+  }
+
+.resetform label{
+  font-family: sans-serif;
+  color:white;
+  padding:7px;
+
+}
+
+.resetform input{
+  background:transparent;
+  color:white;
+  border:none;
+  border-bottom: 1px solid #fff;
+  width:200px;
+  font-size: 16px;
+}
+
+.resetpage .rpassform img{
+  width:210px;
+height:150px;
+left: 43%;
+right:55%;
+position: relative;
+}
+.resetpage .rpassform h2{
+  left:50%;
+  /* bottom:50px; */
+   text-align: center; 
+  font-family: sans-serif;
+  color: white;
+  
+}
+
+.rpassform .login-button{
+  top: 50px; 
+ position: relative;
+ display: block;
+ padding: 10px 20px;
+ border-radius: 12px;
+ left:600px;
+ letter-spacing: 4px;
+ background:white;
+ border-color: steelblue;
+}
+.rpassform .login-button:hover {
+background:steelblue;
+color:white;
+border-color: white;
+} 
+
+
+.rpassform .resetform{
+  
+  /* top:10px; */
+  left:400px;
+  /* right:50%; */
+  position: relative;
+  padding:30px;
+   /* width:400px;
+  height:210px;    */
+   border-radius: 10px;
+  transform: translate(100px, 50px);  
+}
+
+
+.dashboard-form{  
+  height: 100%;
+  width: 100%;
+   position: fixed;
+  /* z-index: 1;*/
+  top: 0; 
+  overflow-x: hidden; 
+  /* padding-top: 20px;  */
+  background-color:#4682b4;      
+  }
+
+ .dashboard-form #mynav{
+   
+   color:steelblue;
+   font-weight:bold;
+ }
+ .dashboard-form .mynav-contents{
+   
+  color:steelblue;
+  font-weight:bold;
+}
+.dashboard-form .navbar-brand{
+  color:steelblue;
+}
+.dashboard-form .navbar-nav{
+  float: right;
+}
+ 
+  .dashboard-form .upload-button{
+    top: 100px;    
+   position: relative;
+   display: block;
+   padding: 10px 20px;
+   border-radius: 12px;
+   left:500px;
+   letter-spacing: 4px;
+   background:white;
+   border-color: steelblue;
+  }
+  .dashboard-form .upload-button:hover {
+  background:steelblue;
+  color:white;
+  border-color: white;
+  } 
+
+  
+  .dashboard-form .draw-button{
+    top: 180px; 
+   position: relative;
+   display: block;
+   padding: 10px 20px;
+   border-radius: 12px;
+   left:500px;
+   letter-spacing: 4px;
+   background:white;
+   border-color: steelblue;
+  }
+  .dashboard-form .draw-button:hover {
+  background:steelblue;
+  color:white;
+  border-color: white;
+  } 
+  .dashboard-form img{
+    width:210px;
+  height:150px;
+  margin: 20px;
+ left: 500px;
+ /* right:55%; */
+  position: relative;
+  }
+  .dashboard-form #button-h2{
+    display: block;
+  }
+
+  
+.profilepage{  
+  height: 100%;
+  width: 100%;
+   position: fixed;
+  /* z-index: 1;*/
+  top: 0; 
+  overflow-x: hidden; 
+  /* padding-top: 20px;  */
+  background-color:#4682b4;      
+  }
+
+  
+ .profileform #mynav{
+   
+  color:steelblue;
+  font-weight:bold;
+}
+.profileform .mynav-contents{
+  
+ color:steelblue;
+ font-weight:bold;
+}
+.profileform .navbar-brand{
+ color:steelblue;
+}
+.profileform .navbar-nav{
+ float: right;
+}
+
+.profileform h2{
+  left:50%;
+  top:100px;
+  /* bottom:50px; */
+   text-align: center; 
+  font-family: sans-serif;
+  color: white;
+}
+
+.profileform .profile-details label{
+  font-family: sans-serif;
+  color:white;
+  padding:2px;
+  display:inline-block;
+  left:500px;
+  top:100px;
+  position: relative;
+  font-size: 18px;
+}
+.profileform .profile-details p{
+  font-family: sans-serif;
+  color:white;
+  padding:2px;
+  left:600px;
+  top:100px;
+  position: relative;
+  font-size: 18px;
+  display:inline;
+}
+
+.profileform .login-button{
+  top: 180px; 
+ position: relative;
+ display: block;
+ padding: 10px 20px;
+ border-radius: 12px;
+ left:600px;
+ letter-spacing: 4px;
+ background:white;
+ border-color: steelblue;
+}
+.profileform .login-button:hover {
+background:steelblue;
+color:white;
+border-color: white;
+} 
+
+.edit-input {
+  display:none;
+}

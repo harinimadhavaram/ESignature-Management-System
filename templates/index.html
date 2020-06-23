@@ -4,48 +4,49 @@
 ESignature Management
 {% endblock %}
 
-<!--{% block styles %}
+{% block styles %}
 {{super()}}
-<link rel="stylesheet" href="{{url_for('.static', filename='startertemplate.css')}}"> 
-{% endblock %} -->
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/signin.css') }}">
+{% endblock %}
 
-{% block content %}
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar" ></button>>
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">CalPers Project</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="{{ url_for('login') }}">Login</a></li>
-            <li><a href="{{ url_for('signup') }}">Sign Up</a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-
-    <div class="container">
- 
-      <div class="startertemplate">   
-      
-            <h1><br><br><br><br>
+{% block content %}   
+<div class="split left">
+    <div class="centered">  
+     </div>
+  </div>
+  
+  <div class="split right">
+    <div class="centered">
+      {% with messages= get_flashed_messages() %}
+      {% if messages %}
+              {% for message in messages %}
+              <h3 id="signup-alert"> {{ message }}</h3> 
+              {% endfor %}
+      {% endif %}
+{% endwith %}
+        <div class="loginform">
+            <img src="https://tukuz.com/wp-content/uploads/2019/11/california-public-employees-retirement-system-calpers-logo-vector.png" alt="calpers">
+            <h2>LOGIN</h2>
+            <form class="form-signin" action="{{url_for('showlogin')}}" method="post">
+              <div class="userform">
+                <label for="inputUsername1">Username</label><br>
+                <input name="inputUsername1" type="text"  required="">
+               
+              </div>
+              <div class="userform">
+                <label for="inputPassword1">Password</label><br>
+                <input name="inputPassword1" type="password" required="">
+                
+              </div>
+              <br>
               
-            <centre> <b>        
-            CalPers project Home
-        </b>  
-        </centre>
-    </h1>
-      </div>
-
-    </div><!-- /.container -->
-    <div>
-<img class="img-responsive" src="Xuk9bd26.jpeg" > 
+              <a class="forgot-password" href="{{url_for('forgotpwd')}}">Forgot password?</a>
+              <a class="signup-link" href="{{url_for('signup')}}">New User? Sign Up</a>
+              <br>
+              <button class="login-button"type="submit">LOGIN</button>
+            </form>
+          </div>
+     
     </div>
+  </div>
 {% endblock %}
