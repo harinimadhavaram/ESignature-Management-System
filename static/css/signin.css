@@ -721,3 +721,8 @@ position: relative;
   .h2-draw{
    color:white;
  }
+
+  .output_image{
+      width: 50%;
+      height: 100%;
+  }
