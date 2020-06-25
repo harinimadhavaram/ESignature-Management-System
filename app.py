@@ -26,7 +26,7 @@ app = Flask(__name__)
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = '12345678'
+app.config['MYSQL_PASSWORD'] = '1234'
 app.config['MYSQL_DB'] = 'calpers_users'
 app.secret_key='hello'
 ts = itsdangerous.URLSafeTimedSerializer(app.config["SECRET_KEY"])
@@ -311,7 +311,7 @@ def forgotpassword():
 
 
 @app.route('/signupload')
-def dashboard():
+def upload_signature_here():
     if 'user' in session:
         return render_template('signature_upload.html')
     return render_template('index.html',message="Not Logged in")

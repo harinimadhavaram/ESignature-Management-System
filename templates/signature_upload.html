@@ -6,26 +6,59 @@ Upload Signature
 
 {% block styles %}
 {{super()}}
-<link rel="stylesheet" href="{{url_for('.static', filename='signin.css')}}">
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/signin.css') }}">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+<script type="text/javascript">
+  function demoShow(){
+//  document.getElementByd('p2').style.display="block";
+document.getElementById("p2").style.visibility = "visible";
+document.getElementById("p3").style.visibility = "visible";
+
+}
+</script>
 {% endblock %}
 
 
 
 {% block content %}
+<div class="upload-sign-form">
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="{{url_for('home')}}">CalPERS</a>
+        
+      </div>
+      <ul class="nav navbar-nav ">
+        
+        <li class="dropdown">
+          <a class="dropdown-toggle " id="mynav" data-toggle="dropdown" > {% if session.loggedin %}
+            HI {{session.user}}
+                    {% endif %}
+          <span class="caret"></span></a>
+          <ul class="dropdown-menu" >
+            <li ><a class="mynav-contents" href="{{url_for('profile')}}">Profile</a></li>
+            <li ><a class="mynav-contents" href="{{url_for('logout')}}">Logout</a></li>
+           
+          </ul>
+        </li>
+        
+      </ul>
+    </div>
+  </nav>
 <div class="container">
     <div class="col-xs-4">
-  <form class="form-signin">
-    <label for="inputImage">UPLOAD SIGNATURE</label>
+ 
+    <label class="upload-title" for="inputImage">UPLOAD SIGNATURE</label>
     <br><br>
     <input type="file" id="img" name="img" accept="image/*">
     <br><br>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Signature Upload</button>
-    <br>
-    <br>
-    <!--<button class="btn btn-lg btn-primary btn-block" onclick="{{ url_for('draw_signature') }}" type="submit">Draw Signature </button> -->
-    <a href="{{ url_for('draw_signature') }}" class="btn btn-lg btn-primary btn-block">Draw Signature</a>
-  </form>
+    <button class="login-button-save" type="button"  onclick="demoShow()">SAVE SIGNATURE</button>
+    <button class="login-button-preview" type="button" id="p2">PREVIEW</button>
+    <button class="login-button-upload" type="button" id="p3">SIGNATURE UPLOAD</button>
+    
+ 
  
   </div>
 </div> <!-- /container -->
+</div>
 {% endblock %}

@@ -30,6 +30,20 @@
       color: white;
       
   }
+  .right #e-sign{
+    left:50%;
+    bottom:50px;
+     text-align: center; 
+    font-family: sans-serif;
+    /* background-color: white; */
+    font-style:italic;
+    font-size: 20px;
+    margin-bottom: 20px;
+    /* text-decoration: underline; */
+    color: white;
+    text-shadow:tomato 2px 2px 10px;
+/* text-shadow: tomato; */
+  }
   .right input{
       background:transparent;
       color:white;
@@ -45,6 +59,7 @@
   .right .dropdown{
       background:transparent;
       font-size:16px;
+     
       color:white;
       border-bottom: 1px solid #fff;
   }
@@ -77,10 +92,57 @@ background:steelblue;
     transform: translate(100px, 50px);
     
 }
-.right #signup-alert{
-  color:red;
+ /* .right #signup-alert{ 
+  color:white;
+  justify-content: center;
+}  */
+
+.alert {
+  padding: 15px;
+  background-color: #f44336;
+  color: white;
+  margin:27px;
+ 
+  text-align: center;
+} 
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
+.closebtn:hover {
+  color: black;
+}
+
+.form-forget .forgot-alert {
+  padding: 15px;
+  background-color: #f44336;
+  color: white;
+  margin:20px;
+width: 50%;
+margin-left:400px;
+  text-align: center;
+} 
+.forgot-closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.forgot-closebtn:hover {
+  color: black;
+}
 .profilepage #editor{
   display: none;
   left:500px;
@@ -93,7 +155,7 @@ background:steelblue;
     top: 50px;
     display: block;
     padding: 10px 20px;
-    border-radius: 12px;
+    /* border-radius: 12px; */
     letter-spacing: 4px;
     background:white;
     border-color: steelblue;
@@ -121,7 +183,7 @@ background:steelblue;
      position: fixed;
     /* z-index: 1;
     top: 0; */
-    overflow-x: hidden; 
+    overflow-x: auto; 
     padding-top: 20px; 
     background-color:steelblue;      
     }
@@ -184,7 +246,7 @@ background:steelblue;
   position: relative;
   display: block;
   padding: 10px 20px;
-  border-radius: 12px;
+  /* border-radius: 12px; */
   left:600px;
   letter-spacing: 4px;
   background:white;
@@ -244,7 +306,7 @@ position: relative;
  position: relative;
  display: block;
  padding: 10px 20px;
- border-radius: 12px;
+ /* border-radius: 12px; */
  left:600px;
  letter-spacing: 4px;
  background:white;
@@ -304,7 +366,7 @@ border-color: white;
    position: relative;
    display: block;
    padding: 10px 20px;
-   border-radius: 12px;
+   /* border-radius: 12px; */
    left:500px;
    letter-spacing: 4px;
    background:white;
@@ -322,7 +384,7 @@ border-color: white;
    position: relative;
    display: block;
    padding: 10px 20px;
-   border-radius: 12px;
+   /* border-radius: 12px; */
    left:500px;
    letter-spacing: 4px;
    background:white;
@@ -405,12 +467,23 @@ border-color: white;
   display:inline;
 }
 
+.profileform .profile-details .email-text{
+  font-family: sans-serif;
+  color:white;
+  padding:2px;
+  left:560px;
+  top:100px;
+  position: relative;
+  font-size: 18px;
+  display:inline;
+}
+
 .profileform .login-button{
   top: 180px; 
  position: relative;
  display: block;
  padding: 10px 20px;
- border-radius: 12px;
+ /* border-radius: 12px; */
  left:600px;
  letter-spacing: 4px;
  background:white;
@@ -423,10 +496,228 @@ border-color: white;
 }
 
 .edit-input {
-  display:none;
+  display: none;
 }
 .edit-box{
     margin-left: 60px;
-    color: black;
+    color: steelblue;
+    width:300px;
     font-family: sans-serif;
 }
+
+.upload-sign-form{
+  height: 100%;
+  width: 100%;
+   position: fixed;
+  /* z-index: 1;*/
+  top: 0; 
+  margin-right: 20px;
+  overflow-x: hidden; 
+  /* padding-top: 20px;  */
+  background-color:steelblue; 
+}
+
+.upload-sign-form label{
+  font-family: sans-serif;
+  color:white;
+  padding:2px;
+  left:500px;
+  margin-top: 30px;
+  position: relative;
+  font-size: 20px;
+}
+.upload-sign-form input{
+  margin-top: 30px;
+
+}
+
+.upload-sign-form .login-button-save{
+  top: 10px;
+position: relative;
+  display: block;
+  padding: 10px 20px;
+  /* border-radius: 12px; */
+  letter-spacing: 4px;
+  background:white;
+  border-color: steelblue;
+}
+.upload-sign-form .login-button-save:hover {
+  background:steelblue;
+  color:white;
+  border-color: white;
+ }
+
+
+.upload-sign-form .login-button-preview{
+  top: 150px;
+  display: inline-block;
+  padding: 10px 20px;
+  position: relative;
+  /* border-radius: 12px; */
+  letter-spacing: 4px;
+  background:white;
+  border-color: steelblue;
+}
+.upload-sign-form .login-button-preview:hover {
+  background:steelblue;
+  color:white;
+  border-color: white;
+ }
+ 
+.upload-sign-form .login-button-upload{
+  top: 105px;
+  display: inline;
+  padding: 10px 20px;
+  position: relative;
+  /* border-radius: 12px; */
+  letter-spacing: 4px;
+  background:white;
+  left: 200px;
+  border-color: steelblue;
+}
+.upload-sign-form .login-button-upload:hover {
+  background:steelblue;
+  color:white;
+  border-color: white;
+ }
+
+ .upload-sign-form #p2{
+ visibility:hidden; 
+}
+
+
+.upload-sign-form #p3{ 
+  visibility:hidden; 
+ }
+  
+ 
+ .upload-sign-form #mynav{
+   
+  color:steelblue;
+  font-weight:bold;
+}
+.upload-sign-form .mynav-contents{
+  
+ color:steelblue;
+ font-weight:bold;
+}
+.upload-sign-form .navbar-brand{
+ color:steelblue;
+}
+.upload-sign-form .navbar-nav{
+ float: right;
+}
+
+.draw-sign-form{
+  height: 100%;
+  width: 100%;
+   position: fixed;
+  /* z-index: 1;*/
+  top: 0;
+ 
+  overflow-x: hidden; 
+  /* padding-top: 20px;  */
+  background-color:steelblue; 
+}
+
+.draw-sign-form .canvas{
+  background: white;
+  
+}
+.draw-sign-form .canvas-body{
+  padding-top: 20px;
+
+}
+.draw-sign-form #canvasimg{
+  position:absolute;
+  top:10%;
+  left:52%;
+  display:none;
+  background: white;
+}
+
+.draw-sign-form #mynav{
+   
+  color:steelblue;
+  font-weight:bold;
+}
+.draw-sign-form .mynav-contents{
+  
+ color:steelblue;
+ font-weight:bold;
+}
+.draw-sign-form .navbar-brand{
+ color:steelblue;
+}
+.draw-sign-form .navbar-nav{
+ float: right;
+}
+.draw-sign-form .canvas{
+  position:absolute;
+  top:10%;
+  left:10%;
+  border:2px solid;
+}
+.draw-sign-form .eraser{
+  position:absolute;
+  top:10%;
+  text-align: center;
+  font-weight:bold;
+  background: white;
+  left:45%;
+}
+.draw-sign-form .btn2{
+  top: 50px;
+    display: block;
+    padding: 10px 20px;
+  display:none;
+  position:absolute;
+  top:80%;
+  left:62.5%;
+    /* border-radius: 12px; */
+    letter-spacing: 4px;
+    background:white;
+    border-color: steelblue;
+}
+.draw-sign-form .btn2:hover {
+  background:steelblue;
+  color:white;
+  border-color: white;
+ } 
+
+ .draw-sign-form #btn{
+  top: 50px;
+    display: block;
+    padding: 10px 20px;
+    position: relative;
+    /* border-radius: 12px; */
+    letter-spacing: 4px;
+    background:white;
+    border-color: steelblue;
+    left:20px;
+}
+.draw-sign-form #btn:hover {
+  background:steelblue;
+  color:white;
+  border-color: white;
+ } 
+
+ .draw-sign-form #clr{
+  top: 50px;
+    display: block;
+    margin-left: 30px;
+   
+    padding: 10px 20px;
+    /* border-radius: 12px; */
+    letter-spacing: 4px;
+    background:white;
+    border-color: steelblue;
+}
+.draw-sign-form #clr:hover {
+  background:steelblue;
+  color:white;
+  border-color: white;
+ } 
+  .h2-draw{
+   color:white;
+ }
