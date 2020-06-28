@@ -36,7 +36,11 @@ Sign Up
       {% with messages= get_flashed_messages() %}
                 {% if messages %}
                         {% for message in messages %}
-                           <h3 id="signup-alert">   {{ message }}</h3> 
+                        <div class="alert">
+                          <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                          <h4 id="signup-alert"> {{ message }}</h4>
+                        </div>
+                           <!-- <h3 id="signup-alert">   {{ message }}</h3>  -->
                         {% endfor %}
                 {% endif %}
         {% endwith %}

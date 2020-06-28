@@ -36,9 +36,12 @@ Home Page
           </ul>
         </div>
       </nav>
-      
+      <form action="{{url_for('upload_signature_here')}}" >
       <button class="upload-button"type="submit">UPLOAD SIGNATURE</button>
+    </form>
+    <form action="{{url_for('draw_signature')}}">
       <button class="draw-button"type="submit">DRAW SIGNATURE</button>
+    </form>
 
 </div>
 {% endblock %}

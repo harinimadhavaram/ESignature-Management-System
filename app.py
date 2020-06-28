@@ -3,11 +3,15 @@ from dominate.tags import a
 from flask import Flask, render_template, json, request, redirect, url_for, flash,session,abort
 from flask_bootstrap import Bootstrap
 from flask_mysqldb import MySQL
+import numpy as np
+import cv2
+from matplotlib import pyplot as plt
+
 from werkzeug.utils import secure_filename
 from flask import send_from_directory
 UPLOAD_FOLDER = '/Users/keerthigudipudi/esig/esignaturedb/static/uploads/'
+# UPLOAD_FOLDER = 'E:/CSUS/CSC 230/Project/ESignature-Management-System/templates/'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg','svg'}
-
 
 from markupsafe import escape
 import smtplib
@@ -31,7 +35,7 @@ app = Flask(__name__)
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = '12345678'
+app.config['MYSQL_PASSWORD'] = '1234'
 app.config['MYSQL_DB'] = 'calpers_users'
 app.secret_key='hello'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -40,41 +44,6 @@ ts = itsdangerous.URLSafeTimedSerializer(app.config["SECRET_KEY"])
 mysql = MySQL(app)
 
 Bootstrap(app)
-def allowed_file(filename):
-    return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-
-@app.route('/uploads', methods=['GET', 'POST'])
-def upload_file():
-    cursor1 = mysql.connection.cursor()
-    file_path = ''
-    if request.method == 'POST':
-        # check if the post request has the file part
-        if 'file' not in request.files:
-            flash('No file part')
-            return redirect(request.url)
-        file = request.files['file']
-
-        # if user does not select file, browser also
-        # submit an empty part without filename
-        if file.filename == '':
-            flash('No selected file')
-            return redirect(request.url)
-        if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            file_path = UPLOAD_FOLDER+"/"+filename
-            print("-"*30)
-            print(file_path)
-            cursor1.execute("insert into Image_path (Name,Imagepath) values(%s,%s)",[filename, file_path])
-            mysql.connection.commit()
-            return redirect(url_for('uploaded_file',filename=filename))
-    return render_template('upload_signature.html',user_image = file_path)
-
-@app.route('/uploads/<filename>',methods=['GET', 'POST'])
-def uploaded_file(filename):
-    return redirect(url_for('static', filename='uploads/' + filename), code=301)
-
 
 @app.route('/',methods=['GET','POST'])
 def login():
@@ -353,10 +322,76 @@ def forgotpassword():
 
 
 @app.route('/signupload')
-def dashboard():
+def upload_signature_here():
     if 'user' in session:
         return render_template('signature_upload.html')
     return render_template('index.html',message="Not Logged in")
+
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+@app.route('/uploads')
+def upload_file():
+    cursor1 = mysql.connection.cursor()
+    file_path = app.config['UPLOAD_FOLDER']+ "edge1.jpg"
+    print(file_path)
+    username = session['user']
+    cursor1.execute("insert into Image_path (Name,Imagepath, username) values(%s,%s,%s)",["edge1.jpg", file_path, username])
+    mysql.connection.commit()
+    return render_template('signature_upload.html',message="upload")
+
+@app.route('/uploads/<filename>',methods=['GET', 'POST'])
+def uploaded_file(filename):
+    return redirect(url_for('static', filename='uploads/' + filename), code=301)
+
+
+@app.route('/mlalgo', methods=['GET', 'POST'])
+def detect_signature():
+    file_path = ''
+    if request.method == 'POST':
+        # check if the post request has the file part
+        if 'file' not in request.files:
+            flash('No file part')
+            return redirect(request.url)
+        file = request.files['file']
+
+        # if user does not select file, browser also
+        # submit an empty part without filename
+        if file.filename == '':
+            flash('No selected file')
+            return redirect(request.url)
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            file_path = app.config['UPLOAD_FOLDER'] + filename
+
+    img = cv2.imread(file_path)
+    b, g, r = cv2.split(img)  # get b,g,r
+    rgb_img = cv2.merge([r, g, b])  # switch it to rgb
+
+    # Denoising
+    dst = cv2.fastNlMeansDenoising(img, None, 10, 7, 21)
+
+    b, g, r = cv2.split(dst)  # get b,g,r
+    rgb_dst = cv2.merge([r, g, b])  # switch it to rgb
+
+    cv2.imwrite(app.config['UPLOAD_FOLDER'] + "edge.jpg", rgb_dst)
+
+    img = cv2.imread(app.config['UPLOAD_FOLDER'] + 'edge.jpg', 0)
+    edges = cv2.Canny(img, 80, 100)
+
+    plt.subplot(121), plt.imshow(img, cmap='gray')
+    plt.title('Original Image'), plt.xticks([]), plt.yticks([])
+    plt.subplot(122), plt.imshow(edges, cmap='gray')
+    plt.title('Edge Image'), plt.xticks([]), plt.yticks([])
+
+    # plt.show()
+    cv2.imwrite(app.config['UPLOAD_FOLDER'] + "edge1.jpg", edges)
+    return render_template('signature_upload.html', message ="success")
+
+
 
 @app.route('/draw_signature')
 def draw_signature():
