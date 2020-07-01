@@ -99,7 +99,8 @@ draw();
 <div class="draw-sign-form">
     <nav class="navbar navbar-default">
         <div class="container-fluid">
-          <div class="navbar-header">            <a class="navbar-brand" href="{{url_for('home')}}">CalPERS</a>
+          <div class="navbar-header">  
+            <a class="navbar-brand" href="{{url_for('home')}}">CalPERS</a>
             
           </div>
           <ul class="nav navbar-nav ">
@@ -121,19 +122,24 @@ draw();
       </nav>
       
       <div class="canvas-body">
+        <h2>DRAW SIGNATURE</h2>
+        <label id="preferred-name"> Enter your preferred name:</label>
+    <input id="preferred" type="text"  required="">
+    <br><br>
 
 <body class="draw-sign-class" onload="init()">
+ 
    
     <canvas id="can" class="canvas" width="400" height="400" ></canvas>      
     <div class="eraser">ERASER</div>
-    <div style="position:absolute;top:15%;left:45%;width:40px;height:20px;background:white;border:2px solid;" id="white" onclick="color(this)"></div>
+    <div style="position:absolute;top:330px;left:46%;width:40px;height:20px;background:white;border:2px solid;" id="white" onclick="color(this)"></div>
     <img id="canvasimg" >
-    <input type="button" value="SAVE" id="btn" size="30" onclick="save()" style="position:absolute;top:80%;left:20%;">
-    <input type="button" value="CLEAR" id="clr" size="23" onclick="erase()" style="position:absolute;top:80%;left:25%;">
+    <input type="button" value="SAVE" id="btn" size="30" onclick="save()" >
+    <input type="button" value="CLEAR" id="clr" size="23" onclick="erase()" >
     <button class="btn2" id="b2" >SUBMIT</button>
     </body>
+  </div>
 
-</div>
 </div>
    
 {% endblock %}

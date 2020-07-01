@@ -9,7 +9,7 @@ from matplotlib import pyplot as plt
 
 from werkzeug.utils import secure_filename
 from flask import send_from_directory
-UPLOAD_FOLDER = '/Users/keerthigudipudi/esig/esignaturedb/static/uploads/'
+UPLOAD_FOLDER = 'C:/pyprac/CALPERS/static/uploads'
 # UPLOAD_FOLDER = 'E:/CSUS/CSC 230/Project/ESignature-Management-System/templates/'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg','svg'}
 
@@ -138,7 +138,7 @@ def showlogin():
 
             else:
                 print('Login failed')
-                flash('USERNAME OR PASSWORD INCORRECT')
+                flash('USERNAME OR PASSWORD INCORRECT', 'failure')
                 #msg='Incorrect username/password!'
                 return render_template('index.html')
 
@@ -207,13 +207,13 @@ def showsignup():
 
                 #cursor1.execute("insert into user_details(Username,Pwd,Email_id,SecQue1,Ans1) values (%s,%s,%s,%s,%s)",[_username,_pwd,_email,_que1,_ans1])
                 mysql.connection.commit()
-                flash("Account created")
+                flash("Account created" , 'success')
                 print('6')
                 #return render_template('login.html')
                 return redirect(url_for("login"))
 
             else:
-                flash("ACCOUNT ALREADY EXISTS. TRY LOGGIN IN")
+                flash("ACCOUNT ALREADY EXISTS. TRY LOGGIN IN", 'failure')
                 print("Username Exists")
 
                 return redirect(url_for("signup"))
@@ -299,7 +299,7 @@ def forgotpassword():
         exists=cursor4.execute("select Username from user_details where user_details.Email_id=%s and user_details.SecQue1=%s and user_details.Ans1=%s", [_email,_que1,_ans1])
         user=cursor4.fetchall()
         if exists is 0:
-            flash("Details are incorrect")
+            flash("Details are incorrect", 'failure')
             return redirect(url_for("forgotpwd"))
     
     
@@ -316,7 +316,7 @@ def forgotpassword():
         message = msg.as_string()
         email.sendmail(fromaddr, toaddr, message)
         email.quit()
-        flash("Details verified. An email had been sent to you to reset the password.")
+        flash("Details verified. An email had been sent to you to reset the password.",'success')
         return render_template('index.html', message="User created successfully")
     else:
         abort(404)

@@ -97,14 +97,14 @@ background:steelblue;
   justify-content: center;
 }  */
 
-.alert {
+/* .alert {
   padding: 15px;
   background-color: #f44336;
   color: white;
   margin:27px;
  
   text-align: center;
-} 
+}  */
 .closebtn {
   margin-left: 15px;
   color: white;
@@ -151,6 +151,32 @@ margin-left:400px;
   color:steelblue;
   position: relative;
 }
+
+.profilepage #feditor{
+  display: none;
+  /* left:500px; */
+  top:30px;
+  right:70px;
+  color:steelblue;
+  position: relative;
+}
+.profilepage #leditor{
+  display: none;
+  /* left:10px; */
+  top:30px;
+  right:70px;
+  color:steelblue;
+  position: relative;
+}
+
+.profilepage #oeditor{
+  display: none;
+  /* left:100px; */
+  top:30px;
+  right:90px;
+  color:steelblue;
+  position: relative;
+}
 .right .login-button{
     top: 50px;
     display: block;
@@ -194,6 +220,7 @@ margin-left:400px;
    right:55%;
     position: relative;
     }
+
    .homepage .homeform h2{
       left:50%;
       /* bottom:50px; */
@@ -362,10 +389,10 @@ border-color: white;
 }
  
   .dashboard-form .upload-button{
-    top: 100px;    
+    top: 150px;    
    position: relative;
    display: block;
-   padding: 10px 20px;
+   padding: 10px 30px;
    /* border-radius: 12px; */
    left:500px;
    letter-spacing: 4px;
@@ -380,10 +407,10 @@ border-color: white;
 
   
   .dashboard-form .draw-button{
-    top: 180px; 
+    top: 240px; 
    position: relative;
    display: block;
-   padding: 10px 20px;
+   padding: 10px 43px;
    /* border-radius: 12px; */
    left:500px;
    letter-spacing: 4px;
@@ -478,6 +505,38 @@ border-color: white;
   display:inline;
 }
 
+.profileform .profile-details .fname-text{
+  font-family: sans-serif;
+  color:white;
+  padding:2px;
+  left:600px;
+  top:100px;
+  position: relative;
+  font-size: 18px;
+  display:inline;
+}
+
+.profileform .profile-details .lname-text{
+  font-family: sans-serif;
+  color:white;
+  padding:2px;
+  left:600px;
+  top:100px;
+  position: relative;
+  font-size: 18px;
+  display:inline;
+}
+
+.profileform .profile-details .org-text{
+  font-family: sans-serif;
+  color:white;
+  padding:2px;
+  left:580px;
+  top:100px;
+  position: relative;
+  font-size: 18px;
+  display:inline;
+}
 .profileform .login-button{
   top: 180px; 
  position: relative;
@@ -501,6 +560,46 @@ border-color: white;
 .edit-box{
     margin-left: 60px;
     color: steelblue;
+    width:300px;
+    font-family: sans-serif;
+}
+.fedit-input {
+  display: none;
+}
+.fedit-box{
+    margin-left: 60px;
+    color: steelblue;
+    left:600px;
+    top:70px;
+    position: relative;
+    width:300px;
+    font-family: sans-serif;
+}
+
+
+.ledit-input {
+  display: none;
+}
+.ledit-box{
+    margin-left: 60px;
+    color: steelblue;
+    width:300px;
+    left:600px;
+    top:70px;
+    position:relative;
+    font-family: sans-serif;
+}
+
+
+.oedit-input {
+  display: none;
+}
+.oedit-box{
+    margin-left: 60px;
+    color: steelblue;
+    left:600px;
+    top:70px;
+    position: relative;
     width:300px;
     font-family: sans-serif;
 }
@@ -529,6 +628,27 @@ border-color: white;
 .upload-sign-form input{
   margin-top: 30px;
 
+}
+.upload-sign-form #preferred-name{
+font-family: sans-serif;
+  color:white;
+  padding:2px;
+  display:inline-block;
+  left:200px;
+  top:10px;
+  position: relative;
+  font-size: 18px;
+}
+.upload-sign-form #preferred{
+font-family: sans-serif;
+  
+  padding:2px;
+  left:500px;
+  /* top:10%; */
+  bottom:60px;
+  position: relative;
+  font-size: 18px;
+  display:inline;
 }
 
 .upload-sign-form .login-button-save{
@@ -620,22 +740,41 @@ position: relative;
   background-color:steelblue; 
 }
 
-.draw-sign-form .canvas{
-  background: white;
-  
+
+.draw-sign-form h2{
+  left:50%;
+  bottom:50px;
+   text-align: center; 
+  font-family: sans-serif;
+  color: white;
 }
 .draw-sign-form .canvas-body{
   padding-top: 20px;
+  top:600px;
+  /* overflow-x: hidden; */
+  /* overflow-y: hidden; */
+  
 
 }
 .draw-sign-form #canvasimg{
   position:absolute;
-  top:10%;
+  /* top:10%; */
+  top:250px;
   left:52%;
   display:none;
   background: white;
 }
 
+.draw-sign-form .canvas{
+  background: white;
+  
+    position:relative;
+    /* top:10; */
+     top:50px; 
+    left:10%;
+    border:2px solid; 
+  
+}
 .draw-sign-form #mynav{
    
   color:steelblue;
@@ -652,31 +791,30 @@ position: relative;
 .draw-sign-form .navbar-nav{
  float: right;
 }
-.draw-sign-form .canvas{
-  position:absolute;
-  top:10%;
-  left:10%;
-  border:2px solid;
-}
+
 .draw-sign-form .eraser{
   position:absolute;
-  top:10%;
+  /* top:10%; */
+  top:300px;
   text-align: center;
   font-weight:bold;
   background: white;
   left:45%;
 }
 .draw-sign-form .btn2{
-  top: 50px;
-    display: block;
+  /* top: 200px; */
+  bottom:30px;
+    display: inline-block;
     padding: 10px 20px;
   display:none;
-  position:absolute;
-  top:80%;
-  left:62.5%;
+  position:relative;
+  /* top:80%; */
+  /* bottom:10%; */
+  left:62%;
     /* border-radius: 12px; */
     letter-spacing: 4px;
     background:white;
+    /* background:red; */
     border-color: steelblue;
 }
 .draw-sign-form .btn2:hover {
@@ -686,7 +824,8 @@ position: relative;
  } 
 
  .draw-sign-form #btn{
-  top: 50px;
+   top: 50px;
+  bottom :20px;
     display: block;
     padding: 10px 20px;
     position: relative;
@@ -694,7 +833,10 @@ position: relative;
     letter-spacing: 4px;
     background:white;
     border-color: steelblue;
-    left:20px;
+    left:15%;
+    /* position:absolute; */
+    /* top:80%; */
+    /* left:20%; */
 }
 .draw-sign-form #btn:hover {
   background:steelblue;
@@ -703,21 +845,48 @@ position: relative;
  } 
 
  .draw-sign-form #clr{
-  top: 50px;
-    display: block;
-    margin-left: 30px;
-   
+  top: 8px;
+  bottom:20px;
+  position:relative;
+    display: inline-block;
+    margin-left: 50px;   
     padding: 10px 20px;
     /* border-radius: 12px; */
     letter-spacing: 4px;
     background:white;
     border-color: steelblue;
+    /* position:absolute; */
+    /* top:80%; */
+     left:20%;
 }
 .draw-sign-form #clr:hover {
   background:steelblue;
   color:white;
   border-color: white;
  } 
+
+ .draw-sign-form #preferred-name{
+  font-family: sans-serif;
+    color:white;
+    padding:2px;
+    display:inline-block;
+    left:300px;
+    top:10px;
+    position: relative;
+    font-size: 18px;
+  }
+  .draw-sign-form #preferred{
+  font-family: sans-serif;
+   
+    padding:2px;
+    left:400px;
+    top:10px;
+    /* top:10%; */
+    bottom:60px;
+    position: relative;
+    font-size: 18px;
+    display:inline;
+  }
   .h2-draw{
    color:white;
  }
@@ -725,4 +894,19 @@ position: relative;
   .output_image{
       width: 50%;
       height: 100%;
+  }
+
+  .success {
+    padding: 15px;
+    background:green;
+    color: white;   
+    margin:27px;
+    text-align: center;
+  }
+  .failure {
+    padding: 15px;
+    background:red;
+    color: white;
+    margin:27px;
+    text-align: center;
   }

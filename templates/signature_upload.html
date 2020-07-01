@@ -78,6 +78,8 @@ document.getElementById("p3").style.visibility = "visible";
     <div class="col-xs-4">
  
     <label class="upload-title" for="inputImage">UPLOAD SIGNATURE</label>
+    <label id="preferred-name"> Enter your preferred name:</label>
+    <input id="preferred" type="text"  required="">
     <br><br>
         <form method="post" enctype="multipart/form-data" action="{{url_for('detect_signature')}}">
     <input type="file" id="img" name="file" onchange="preview_image(event)">

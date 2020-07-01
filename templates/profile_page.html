@@ -13,25 +13,67 @@ Profile Page
    var theText = document.getElementById('thetext');
    var theEditor = document.getElementById('ta1');
    var editorArea = document.getElementById('editor');
+
+   var ftheText = document.getElementById('fthetext');
+   var ftheEditor = document.getElementById('fta1');
+   var feditorArea = document.getElementById('feditor');
+
+   var ltheText = document.getElementById('lthetext');
+   var ltheEditor = document.getElementById('lta1');
+   var leditorArea = document.getElementById('leditor');
+
+   var otheText = document.getElementById('othetext');
+   var otheEditor = document.getElementById('ota1');
+   var oeditorArea = document.getElementById('oeditor');
  
    //set text in text div to textarea
    //correct line breaks, prevent HTML injection
    var subject = theText.innerHTML;
+   var fsubject = ftheText.innerHTML;
+   var lsubject = ltheText.innerHTML;
+   var osubject = otheText.innerHTML;
+
   //  subject = subject.replace(new RegExp("<br />", "gi"), 'n');
   //  subject = subject.replace(new RegExp("<br />", "gi"), 'n');
   //  subject = subject.replace(new RegExp("<", "gi"), '<');
   //  subject = subject.replace(new RegExp(">", "gi"), '>');
+  
    theEditor.value = subject;
+   ftheEditor.value = fsubject;
+   ltheEditor.value = lsubject;
+   otheEditor.value = osubject;
  
    //hide text, show editor
    theText.style.display = 'none';
    editorArea.style.display = 'inline';
+
+   ftheText.style.display = 'none';
+   feditorArea.style.display = 'inline';
+
+   ltheText.style.display = 'none';
+   leditorArea.style.display = 'inline';
+
+   otheText.style.display = 'none';
+   oeditorArea.style.display = 'inline';
 }
+
 
 function doEdit() {
    var theText = document.getElementById('thetext');
    var theEditor = document.getElementById('ta1');
    var editorArea = document.getElementById('editor');
+
+   var ftheText = document.getElementById('fthetext');
+   var ftheEditor = document.getElementById('fta1');
+   var feditorArea = document.getElementById('feditor');
+
+   var ltheText = document.getElementById('lthetext');
+   var ltheEditor = document.getElementById('lta1');
+   var leditorArea = document.getElementById('leditor');
+
+   var otheText = document.getElementById('othetext');
+   var otheEditor = document.getElementById('ota1');
+   var oeditorArea = document.getElementById('oeditor');
  
    //this is where you would call your AJAX update script
    //e.g., doXMLRequest(data);
@@ -40,13 +82,29 @@ function doEdit() {
    //set text to be value in editor
    //correct line breaks, prevent HTML injection
    var subject = theEditor.value;
+   var fsubject = ftheEditor.value;
+   var lsubject = ltheEditor.value;
+   var osubject = otheEditor.value;
+
   //  subject = subject.replace(new RegExp("<", "g"), '<');
   //  subject = subject.replace(new RegExp(">", "g"), '>');
   //  subject = subject.replace(new RegExp("n", "g"), '<br />');
    theText.innerHTML = subject;
+   ftheText.innerHTML = fsubject;
+   ltheText.innerHTML = lsubject;
+   otheText.innerHTML = osubject;
    
   theText.style.display = 'inline';
    editorArea.style.display = 'none';
+
+   ftheText.style.display = 'inline';
+   feditorArea.style.display = 'none';
+
+   ltheText.style.display = 'inline';
+   leditorArea.style.display = 'none';
+
+   otheText.style.display = 'inline';
+   oeditorArea.style.display = 'none';
  
    //hide editor, show text
 }
@@ -67,7 +125,7 @@ function doEdit() {
                 
                 <li class="dropdown">
                   <a class="dropdown-toggle " id="mynav" data-toggle="dropdown" >{% if session.loggedin %}
-                    HI {{session.user}}
+                    Hi {{session.user}}
                             {% endif %}
                   <span class="caret"></span></a>
                   <ul class="dropdown-menu" >
@@ -97,6 +155,40 @@ function doEdit() {
             <!-- <input name="submit" id="submit" type="button" value="Edit Text" onclick="doEdit()" /> -->
         </div>     
           </div>
+
+          <div class="profile-details">
+            <label>First Name:</label>
+          <!-- <p class="p-email">User's email  will be displayed here</p>    -->
+          <p id="fthetext" class="fname-text"  onclick="toggleEditor()">user's first name</p>
+          <input type="text" class="fedit-input" />
+          <div id="feditor">
+            <input id="fta1" class="fedit-box"  name="ta1"><br />
+            <!-- <input name="submit" id="submit" type="button" value="Edit Text" onclick="doEdit()" /> -->
+        </div>     
+          </div>
+
+          <div class="profile-details">
+            <label>Last Name:</label>
+          <!-- <p class="p-email">User's email  will be displayed here</p>    -->
+          <p id="lthetext" class="lname-text" onclick="toggleEditor()">User's Last name</p>
+          <input type="text" class="ledit-input" />
+          <div id="leditor">
+            <input id="lta1" class="ledit-box"  name="ta1"><br />
+            <!-- <input name="submit" id="submit" type="button" value="Edit Text" onclick="doEdit()" /> -->
+        </div>     
+          </div>
+
+          <div class="profile-details">
+            <label>Organisation:</label>
+          <!-- <p class="p-email">User's email  will be displayed here</p>    -->
+          <p id="othetext" class="org-text" onclick="toggleEditor()">User's Organisation</p>
+          <input type="text" class="oedit-input" />
+          <div id="oeditor">
+            <input id="ota1" class="oedit-box"  name="ta1"><br />
+            <!-- <input name="submit" id="submit" type="button" value="Edit Text" onclick="doEdit()" /> -->
+        </div>     
+          </div>
+
           <div class="profile-details">
             <label>Signature:</label>
           <p>User's signature will be displayed here</p> 
