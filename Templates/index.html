@@ -17,15 +17,20 @@ ESignature Management
   
   <div class="split right">
     <div class="centered">
-      {% with messages= get_flashed_messages() %}
+      {% with messages= get_flashed_messages(with_categories=true) %}
       {% if messages %}
-              {% for message in messages %}
-              <h3 id="signup-alert"> {{ message }}</h3> 
+              {% for category,message in messages %}
+              <div class="alert">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                <h4 class="{{ category }}"> {{ message }}</h4>
+              </div>
+              
               {% endfor %}
       {% endif %}
 {% endwith %}
         <div class="loginform">
             <img src="https://tukuz.com/wp-content/uploads/2019/11/california-public-employees-retirement-system-calpers-logo-vector.png" alt="calpers">
+            <h2 id="e-sign">E-Signature Management System</h2>
             <h2>LOGIN</h2>
             <form class="form-signin" action="{{url_for('showlogin')}}" method="post">
               <div class="userform">
